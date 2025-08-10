@@ -29,10 +29,17 @@
     "lint": "eslint src/**",
     "fixcode": "eslint --fix src/**",
     "prettier": "prettier --trailing-comma all --write \"src/**/*.js\"",
-    "clean": "rm -rf $TMPDIR/react-* && rm -rf node_modules/",
+    "clean": "rm -rf $TMPDIR/react-* && rm -rf node_modules/ android/build android/.gradle android/app/.cxx android/app/build",
     "apk": "cd android && ./gradlew assembleRelease && cd ..",
-    "change": "cp changes/nfc-manager-build.gradle node_modules/react-native-nfc-manager/android/build.gradle && cp changes/localization-build.gradle node_modules/react-native-localization/android/build.gradle && cp changes/deviceinfo-build.gradle node_modules/react-native-device-info/android/build.gradle && cp changes/camera-build.gradle node_modules/react-native-camera/android/build.gradle && cp changes/maps-build.gradle node_modules/react-native-maps/lib/android/build.gradle && cp changes/RCTBluetoothSerialPackage.java node_modules/react-native-bluetooth-serial/android/src/main/java/com/rusel/RCTBluetoothSerial/"
-  },
+    "change": "cp changes/nfc-manager-build.gradle node_modules/react-native-nfc-manager/android/build.gradle && cp changes/localization-build.gradle node_modules/react-native-localization/android/build.gradle && cp changes/deviceinfo-build.gradle node_modules/react-native-device-info/android/build.gradle && cp changes/camera-build.gradle node_modules/react-native-camera/android/build.gradle && cp changes/maps-build.gradle node_modules/react-native-maps/lib/android/build.gradle && cp changes/RCTBluetoothSerialPackage.java node_modules/react-native-bluetooth-serial/android/src/main/java/com/rusel/RCTBluetoothSerial/",
+    "clean-android": "cd android && ./gradlew clean && cd ..",
+    "codepush": "appcenter codepush release-react -a deidine/deidine-Android -d Production && appcenter codepush release-react -a deidine/deidine-iOS -d Production",
+    "postinstall": "npx patch-package",
+    "release:apk": "cd android && ./gradlew assembleRelease && cd ..",
+    "release:aab": "cd android && ./gradlew bundleRelease && cd ..",
+    "release-android": "cd android && ./gradlew bundleRelease && cd ..", 
+    "reclean": "rm -rf node_modules && yarn cache clean && rm -rf yarn.lock && touch yarn.lock && yarn install && yarn start --reset-cache"
+},
   "jest": {
     "preset": "react-native",
     "transformIgnorePatterns": [
@@ -114,5 +121,6 @@
     "hooks": {
       "pre-commit": "yarn test"
     }
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
