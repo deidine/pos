@@ -1,0 +1,6 @@
+ mvn install:install-file \
+  -Dfile=/Users/deidinecheigeur/Desktop/projects/tailpos/gradle-2.1.0.jar \
+  -DgroupId=com.android.tools.build \
+  -DartifactId=gradle \
+  -Dversion=2.1.0 \
+  -Dpackaging=jar
